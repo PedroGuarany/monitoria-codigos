@@ -1,6 +1,6 @@
 package generics;
 
-public class Exibidor<T> {
+public class Exibidor<T extends Comparable<T>>{
     private T texto;
 
     public Exibidor(T texto) {
@@ -13,4 +13,6 @@ public class Exibidor<T> {
     public T getTexto(){
         return texto;
     }
+
+
 }
