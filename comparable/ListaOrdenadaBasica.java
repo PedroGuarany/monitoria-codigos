@@ -13,9 +13,15 @@ public class ListaOrdenadaBasica<T extends Comparable> {
             return;
         }
 
+        if (primeiroMaiorQueSegundo(inicio.valor, valor)){
+            var novoNo = new No<T>(valor);
+            novoNo.proximo = inicio;
+            inicio = novoNo;
+            return;
+        }
+
         var noAtual = inicio;
-        var testeValor = noAtual.valor;
-        while(noAtual.valor.compareTo(valor) < 0){
+        while(noAtual.proximo != null && primeiroMaiorQueSegundo(noAtual.proximo.valor, valor)){
             noAtual = noAtual.proximo;
         }
 
@@ -24,13 +30,18 @@ public class ListaOrdenadaBasica<T extends Comparable> {
         noAtual.proximo = novoNo;
     }
 
+    private boolean primeiroMaiorQueSegundo(T primeiro, T segundo){
+        return primeiro.compareTo(segundo) > 0;
+    }
+
     @Override
     public String toString() {
         var sb = new StringBuilder();
         var noAtual = inicio;
-        while (inicio != null){
+        while (noAtual != null){
             sb.append(noAtual.valor + ", ");
+            noAtual = noAtual.proximo;
         }
-        return sb.toString();
+        return sb.substring(0, sb.length() - 2);
     }
 }
