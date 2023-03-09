@@ -21,7 +21,7 @@ public class ListaOrdenadaBasica<T extends Comparable> {
         }
 
         var noAtual = inicio;
-        while(noAtual.proximo != null && primeiroMaiorQueSegundo(noAtual.proximo.valor, valor)){
+        while(noAtual.proximo != null && !primeiroMaiorQueSegundo(noAtual.proximo.valor, valor)){
             noAtual = noAtual.proximo;
         }
 
